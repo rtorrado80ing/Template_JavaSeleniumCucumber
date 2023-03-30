@@ -13,7 +13,7 @@ import utils.BasePage;
         glue = "steps", //Donde esta las definiciones de los steps
         plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:","json:target/cucumber-reports.json"},//Genera el reporte
         monochrome = true,
-        tags = "@Test"
+        tags = ""
 
 )
 public class BusquedaGoogleRunner {
