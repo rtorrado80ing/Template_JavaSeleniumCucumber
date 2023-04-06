@@ -1,25 +1,35 @@
-pipeline{
-    //En que agente esto va a estar corriendo
-  agent any 
-  //Que herramientas vamos a estar instalando al principio
-  tools{
-      gradle "Gradle"
-  }
-  
-  stages{
-      stage("Tareas de limpieza"){
-          steps{
-              //Agarrar el repo en el que esta el codigo que necesitamos correr
-              git 'https://github.com/rtorrado80ing/Template_JavaSeleniumCucumber.git'
-              //Ejecutar la tarea clean de Gradle
-              sh 'gradle clean'
-          }
+pipeline {
+  agent any
+
+  stages {
+    stage('Eliminar workspace') {
+      steps {
+        deleteDir()
       }
-      stage("Imprimo cositas"){
-          steps{
-              echo "Soy un Stage aparte"
-          }
+    }
+
+    stage('Clonar repositorio') {
+      steps {
+        echo 'Hello World'
+        // Get some code from a GitHub repository
+        git 'https://github.com/rtorrado80ing/SeleniumCucumber.git'
+
       }
+    }
+
+    stage('Compilar y ejecutar pruebas') {
+      steps {
+        // Run Gradle on a Windoa agent.
+        bat "gradle clean build test --rerun-tasks"
+
+        // To run Maven on a Windows agent, use
+        // bat "mvn -Dmaven.test.failure.ignore=true clean package"  
+      }
+    }
+    stage('Generar reporte Cucumber') {
+      steps {
+        cucumber '*/.json'
+      }
+    }
   }
-  
 }
