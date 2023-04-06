@@ -12,7 +12,7 @@ pipeline {
       steps {
         echo 'Hello World'
         // Get some code from a GitHub repository
-        git 'https://github.com/rtorrado80ing/SeleniumCucumber.git'
+        git 'https://github.com/rtorrado80ing/Template_JavaSeleniumCucumber.git'
 
       }
     }
