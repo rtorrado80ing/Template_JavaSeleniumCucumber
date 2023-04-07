@@ -27,4 +27,4 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
     - name: Build with Gradle
-      run: clean test --tests *Runner -i
+      run: test --tests *Runner -i
